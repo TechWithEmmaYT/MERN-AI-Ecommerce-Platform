@@ -1,0 +1,33 @@
+@baseUrl = http://localhost:8000/api/products
+
+### Get all products (paginated, filterable)
+GET {{baseUrl}}?page=1&limit=20&sort=best-match
+Content-Type: application/json
+
+### Get products filtered by category
+GET {{baseUrl}}?categoryId=6a33aeac6cc6fea5f6d3318c&page=1&limit=20
+Content-Type: application/json
+
+### Get products with discount
+GET {{baseUrl}}?hasDiscount=true&sort=price-low&page=1&limit=20
+Content-Type: application/json
+
+### Search products by keyword
+GET {{baseUrl}}?keyword=bi&page=1&limit=20
+Content-Type: application/json
+
+### Get products with price range
+GET {{baseUrl}}?minPrice=8&maxPrice=100&sort=price-high&page=1&limit=20
+Content-Type: application/json
+
+### Get deals (discounted + in-stock products)
+GET {{baseUrl}}/deals?limit=10
+Content-Type: application/json
+
+### Get product by slug
+GET {{baseUrl}}/welchs-fruit-flavored-snacks-variety-pack
+Content-Type: application/json
+
+### Get product reviews by slug
+GET {{baseUrl}}/welchs-fruit-flavored-snacks-variety-pack/reviews?page=1&limit=10
+Content-Type: application/json

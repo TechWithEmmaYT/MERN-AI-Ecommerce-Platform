@@ -1,0 +1,5 @@
+node_modules/
+dist/
+.env
+.vscode
+testsprite_tests\tmp\config.json

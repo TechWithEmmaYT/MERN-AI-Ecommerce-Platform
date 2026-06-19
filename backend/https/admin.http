@@ -1,0 +1,82 @@
+@baseUrl = http://localhost:8000/api/admin
+@authUrl = http://localhost:8000/api/auth
+
+### 1. Login as admin first to get JWT cookie
+# POST {{authUrl}}/login
+# Content-Type: application/json
+# { "email": "admin@example.com", "password": "adminpassword" }
+
+### Get admin analytics
+GET {{baseUrl}}/analytics
+Content-Type: application/json
+
+### Generate AI admin content (rephrase title)
+POST {{baseUrl}}/ai/generate
+Content-Type: application/json
+
+{
+  "action": "rephrase-title",
+  "title": "Ball Park Burger Buns Everything",
+  "unit": "16 oz"
+}
+
+### Generate AI admin content (generate description)
+POST {{baseUrl}}/ai/generate
+Content-Type: application/json
+
+{
+  "action": "generate-desc",
+  "title": "Ball Park Burger Buns Everything",
+  "unit": "16 oz"
+}
+
+### Get all orders for admin (paginated)
+GET {{baseUrl}}/orders?page=1&limit=20
+Content-Type: application/json
+
+### Update order status (replace YOUR_ORDER_ID)
+PUT {{baseUrl}}/orders/6a343404c1156c494c11db30/status
+Content-Type: application/json
+
+{
+  "status": "placed",
+  "note": "Order confirmed by admin"
+}
+
+### Get all products for admin (paginated)
+GET {{baseUrl}}/products?page=1&limit=20
+Content-Type: application/json
+
+### Upload product images
+POST {{baseUrl}}/products/upload
+Content-Type: multipart/form-data; boundary=----FormBoundary7MA4YWxkTrZu0gW
+
+------FormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="fruites.jpg"
+Content-Type: image/jpeg
+
+< ./images/fruites.jpg
+------FormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="chicken-pack.jpg"
+Content-Type: image/jpeg
+
+< ./images/chicken-pack.jpg
+------FormBoundary7MA4YWxkTrZu0gW--
+
+
+### Create a new product
+POST {{baseUrl}}/products
+Content-Type: application/json
+
+{
+  "categoryId": "6a33aeac6cc6fea5f6d3318f",
+  "name": "Bibigo Chicken and Cilantro Mini Wontons",
+  "description": "Fully cooked mini wontons with chicken and cilantro.",
+  "images": ["https://res.cloudinary.com/dp9vvlndo/image/upload/v1781774236/chicken-pack_bw4gry.jpg"],
+  "originalPrice": 11.82,
+  "discountPercent": 21,
+  "discountLabel": "21 Off",
+  "unit": "3 lbs",
+  "stockCount": 9,
+  "isActive": true
+}

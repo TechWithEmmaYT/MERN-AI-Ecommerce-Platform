@@ -1,0 +1,53 @@
+@baseUrl = http://localhost:8000/api/orders
+@authUrl = http://localhost:8000/api/auth
+@cartUrl = http://localhost:8000/api/cart
+@addrUrl = http://localhost:8000/api/addresses
+
+### 1. Register a user (if needed)
+# POST {{authUrl}}/register
+# Content-Type: application/json
+# { "name": "OrderTest", "email": "order_test_2026@test.com", "password": "TestPass1234!" }
+
+### 2. Login to get JWT cookie
+# POST {{authUrl}}/login
+# Content-Type: application/json
+# { "email": "order_test_2026@test.com", "password": "TestPass1234!" }
+
+### 3. Add products to cart first
+# POST {{cartUrl}}
+# Content-Type: application/json
+# { "items": [{"productId": "6a33b88f562416ae32da00e6", "quantity": 2}] }
+
+### 4. Create an address
+# POST {{addrUrl}}
+# Content-Type: application/json
+# { "recipientName": "Order Man", "phone": "111-111-1111", "street": "10 Order St", "city": "OrderCity", "state": "OS", "postalCode": "00001", "country": "US" }
+
+### 5.Create order — Cash on Delivery
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "addressId": "6a3413a985a3caf5a4553b8a",
+  "paymentMethod": "cash_on_delivery"
+}
+
+### 6. Create order — Card (Stripe)
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "addressId": "6a3413a985a3caf5a4553b8a",
+  "paymentMethod": "card"
+}
+
+### 7. GET orders
+
+GET {{baseUrl}}
+Content-Type: application/json
+
+
+### 7. GET order By Id
+
+GET {{baseUrl}}/6a342ecb89921bcf30a04e09
+Content-Type: application/json

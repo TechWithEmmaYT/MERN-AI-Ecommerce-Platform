@@ -1,0 +1,11 @@
+
+> backend@1.0.0 dev
+> nodemon
+
+[33m[nodemon] 3.1.14[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): src\**\*[39m
+[33m[nodemon] watching extensions: ts,json[39m
+[32m[nodemon] starting `ts-node --transpile-only ./src/index.ts`[39m
+Database connected!
+Server running on port 8000 in development mode

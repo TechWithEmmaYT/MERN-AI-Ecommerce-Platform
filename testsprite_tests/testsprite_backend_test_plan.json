@@ -1,0 +1,52 @@
+[
+  {
+    "id": "TC001",
+    "title": "postapiauthloginwithvalidcredentials",
+    "description": "Verify that POST /api/auth/login with valid credentials returns 200 status, sets the httpOnly cookie instant_access_token, and returns the user profile with correct fields."
+  },
+  {
+    "id": "TC002",
+    "title": "getapiproductswithvalidqueryparameters",
+    "description": "Verify that GET /api/products with valid category, search, sort, and pagination parameters returns 200 status with a list of matching products and correct pagination metadata."
+  },
+  {
+    "id": "TC003",
+    "title": "postapicartitemswithvalidproductandquantity",
+    "description": "Verify that POST /api/cart/items with valid productId and quantity updates the cart correctly and returns 200 status with updated cart totals."
+  },
+  {
+    "id": "TC004",
+    "title": "getapiaddresseswithauthentication",
+    "description": "Verify that GET /api/addresses with a valid authenticated session returns 200 status with the user's saved addresses."
+  },
+  {
+    "id": "TC005",
+    "title": "postapiorderscheckoutwithvaliddata",
+    "description": "Verify that POST /api/orders/checkout with valid cart, address, and payment method creates an order successfully, returns 200 or 201 status, and server calculates correct totals."
+  },
+  {
+    "id": "TC006",
+    "title": "postapipaymentsstripecreatesessionwithvalidorder",
+    "description": "Verify that POST /api/payments/stripe/create-session with a valid order returns 200 status with Stripe checkout session details for payment processing."
+  },
+  {
+    "id": "TC007",
+    "title": "getapiorderswithauthentication",
+    "description": "Verify that GET /api/orders with authenticated cookie returns 200 status with the list of the user's past orders including order details and status history."
+  },
+  {
+    "id": "TC008",
+    "title": "postapireviewswithdeliveredorderitem",
+    "description": "Verify that POST /api/reviews with details of a delivered order item and valid rating/comment creates a review successfully and returns 201 status."
+  },
+  {
+    "id": "TC009",
+    "title": "getapiadminanalyticswithadminauthorization",
+    "description": "Verify that GET /api/admin/analytics with valid admin authentication returns 200 status with sales, orders, users, products, and out-of-stock metrics."
+  },
+  {
+    "id": "TC010",
+    "title": "putapiadminordersidstatuswithvalidstatus",
+    "description": "Verify that PUT /api/admin/orders/:id/status with a valid next status and optional note updates the order status successfully and returns 200 status with updated order and status history."
+  }
+]

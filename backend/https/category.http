@@ -1,0 +1,5 @@
+@baseUrl = http://localhost:8000/api/categories
+
+### Get all active categories
+GET {{baseUrl}}
+Content-Type: application/json

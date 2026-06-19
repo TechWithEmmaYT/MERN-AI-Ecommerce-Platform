@@ -1,0 +1,28 @@
+@baseUrl = http://localhost:8000/api/cart
+
+### Get cart (guest — no auth cookie, uses guest_cart_id cookie)
+GET {{baseUrl}}
+Content-Type: application/json
+
+
+### Upsert cart (guest — add/update items)
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "items": [
+    { "productId": "6a33b88f562416ae32da00e6", "quantity": 2 },
+    { "productId": "6a33b7db562416ae32da00e5", "quantity": 1 }
+  ]
+}
+
+
+### Update cart with different quantities
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "items": [
+    { "productId": "6a33b7db562416ae32da00e5", "quantity": 3 }
+  ]
+}

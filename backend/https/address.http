@@ -1,0 +1,39 @@
+@baseUrl = http://localhost:8000/api/addresses
+
+### Login first to get the JWT cookie
+# POST http://localhost:8000/api/auth/login
+# Content-Type: application/json
+# { "email": "real_json_test@test.com", "password": "TestPass1234!" }
+
+### Create a new address (default)
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "recipientName": "John Doe",
+  "phone": "+1234567890",
+  "street": "123 Main St",
+  "city": "New York",
+  "state": "NY",
+  "postalCode": "10001",
+  "country": "USA",
+  "isDefault": true
+}
+
+### Create another address (non-default)
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "recipientName": "Jane Doe",
+  "phone": "+0987654321",
+  "street": "456 Oak Ave",
+  "city": "Los Angeles",
+  "state": "CA",
+  "postalCode": "90001",
+  "country": "USA"
+}
+
+### Get all user addresses
+GET {{baseUrl}}
+Content-Type: application/json

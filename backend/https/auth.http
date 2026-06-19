@@ -1,0 +1,27 @@
+@baseUrl = http://localhost:8000/api/auth
+
+### Register a new user
+POST http://localhost:8000/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john@gmail.com",
+  "password": "password123",
+  "phone": "+1234567890"
+}
+
+### Login with existing user
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+  "email": "john@gmail.com",
+  "password": "password123"
+}
+
+### Get authenticated user status
+GET {{baseUrl}}/status
+
+### Logout current user
+POST {{baseUrl}}/logout

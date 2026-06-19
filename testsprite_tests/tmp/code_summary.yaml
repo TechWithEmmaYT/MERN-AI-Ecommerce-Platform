@@ -1,0 +1,171 @@
+project:
+  name: ecommerce-platform
+  language: TypeScript
+  framework:
+    backend: Express 5
+    frontend: React
+  database: MongoDB (Mongoose 9)
+  auth: JWT in httpOnly cookie (instant_access_token)
+
+env:
+  base_url: http://localhost:8000
+
+auth:
+  type: cookie
+  cookie_name: instant_access_token
+  login_endpoint:
+    method: POST
+    path: /api/auth/login
+    request:
+      email: string
+      password: string
+    response:
+      message: "User logged in successfully"
+      user:
+        _id: string
+        name: string
+        email: string
+        role: "admin or user"
+        phone: string
+        createdAt: string
+        updatedAt: string
+
+admin_endpoints:
+  - method: GET
+    path: /api/admin/analytics
+    auth_required: true
+    response:
+      message: "Analytics retrieved successfully"
+      totalSales: number
+      totalOrders: number
+      totalUsers: number
+      totalProducts: number
+      totalOutOfStock: number
+
+  - method: POST
+    path: /api/admin/ai/generate
+    auth_required: true
+    request:
+      action: "rephrase-title or generate-desc"
+      title: string
+      unit: string
+      description?: string
+    response:
+      message: "AI content generated successfully"
+      result: string
+
+  - method: GET
+    path: /api/admin/orders
+    auth_required: true
+    query_params:
+      page: number (default 1)
+      limit: number (default 20, max 100)
+    response:
+      message: "Orders retrieved successfully"
+      orders:
+        - _id: string
+          orderNo: string
+          userId:
+            _id: string
+            name: string
+            email: string
+          items:
+            - productId: string
+              name: string
+              image: string
+              originalPrice: number
+              salePrice: number
+              quantity: number
+              isReviewed: boolean
+          shippingAddress:
+            recipientName: string
+            phone: string
+            street: string
+            city: string
+            state: string
+            postalCode: string
+            country: string
+          paymentMethod: "card or cash_on_delivery"
+          paymentStatus: "pending or paid or failed or refunded"
+          status: "placed or confirmed or assigned or packed or out_for_delivery or delivered or cancelled"
+          subtotal: number
+          deliveryFee: number
+          tax: number
+          total: number
+          createdAt: string
+          updatedAt: string
+      pagination:
+        page: number
+        limit: number
+        total: number
+        totalPages: number
+        hasNextPage: boolean
+        hasPrevPage: boolean
+
+  - method: PUT
+    path: /api/admin/orders/:id/status
+    auth_required: true
+    request:
+      status: "confirmed or assigned or packed or out_for_delivery or delivered or cancelled"
+      note?: string
+    response:
+      message: "Order status updated successfully"
+      order:
+        _id: string
+        orderNo: string
+        status: string
+        paymentStatus: string
+        statusHistory:
+          - status: string
+            note: string
+            date: string
+
+  - method: GET
+    path: /api/admin/products
+    auth_required: true
+    query_params:
+      page: number (default 1)
+      limit: number (default 20, max 100)
+    response:
+      message: "Products retrieved successfully"
+      products:
+        - _id: string
+          categoryId: string
+          name: string
+          slug: string
+          originalPrice: number
+          salePrice: number
+          stockCount: number
+          isActive: boolean
+          createdAt: string
+      pagination:
+        page: number
+        limit: number
+        total: number
+        totalPages: number
+        hasNextPage: boolean
+        hasPrevPage: boolean
+
+  - method: POST
+    path: /api/admin/products
+    auth_required: true
+    request:
+      categoryId: string
+      name: string
+      description?: string
+      images: string[]
+      originalPrice: number
+      discountPercent: number
+      discountLabel?: string
+      unit: string
+      stockCount: number
+      isActive: boolean
+    response:
+      message: "Product created successfully"
+      product:
+        _id: string
+        name: string
+        slug: string
+        originalPrice: number
+        salePrice: number
+        stockCount: number

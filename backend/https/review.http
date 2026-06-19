@@ -1,0 +1,20 @@
+@baseUrl = http://localhost:8000/api/reviews
+
+### Get user's reviews
+GET {{baseUrl}}
+Content-Type: application/json
+
+### Get reviewable order items (delivered + paid, not yet reviewed)
+GET {{baseUrl}}/reviewable
+Content-Type: application/json
+
+### Create a review (replace with real orderId and orderItemId from reviewable endpoint)
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "orderId": "6a342ecb89921bcf30a04e09",
+  "orderItemId": "6a342ecb89921bcf30a04e0a",
+  "rating": 5,
+  "comment": "Great product!"
+}
