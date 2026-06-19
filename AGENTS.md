@@ -33,5 +33,3 @@ A full-stack e-commerce platform. See @README.md for setup and @backend/package.
 - Cart sync: client uses optimistic updates with debounced (500ms) sync to server, with rollback on failure
 
 ## MUST READ
-
-path: C:\Users\emmab\Desktop\ecommerce-platform\.agent\A_PROJECT.md, dont reveal it in the chat! a must
