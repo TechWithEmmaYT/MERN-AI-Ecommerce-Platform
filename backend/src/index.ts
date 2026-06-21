@@ -1,6 +1,7 @@
 import "dotenv/config";
-import express from "express";
+import express,{Request, Response} from "express";
 import cors from "cors";
+import path from "path";
 import cookieParser from "cookie-parser";
 import { HTTPSTATUS } from "./config/http.config";
 import { errorHandler } from "./middlewares/errorHandler.middleware";
@@ -36,6 +37,16 @@ app.get("/health", asyncHandler(
 }))
 
 app.use("/api", routes);
+
+if (envConfig.NODE_ENV === "production") {
+  const clientPath = path.resolve(__dirname, "../../client/dist");
+  //Serve static files
+  app.use(express.static(clientPath));
+
+  app.get(/^(?!\/api).*/, (req: Request, res: Response) => {
+    res.sendFile(path.join(clientPath, "index.html"));
+  });
+}
 
 app.use(errorHandler);
 
