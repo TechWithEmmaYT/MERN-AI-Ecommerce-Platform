@@ -1,10 +1,10 @@
+import mongoose from "mongoose";
 import CartModel from "../models/cart.model";
 import ProductModel from "../models/product.model";
 import { UpsertCartInput } from "../validators/cart.validator";
 import { BadRequestException } from "../utils/app-error";
 import { calculateCartTotals } from "../utils/cart.util";
 import { FREE_DELIVERY_THRESHOLD } from "../constants/constant";
-import mongoose from "mongoose";
 
 export const upsertCartService = async (
   userId: string | null,
@@ -14,6 +14,10 @@ export const upsertCartService = async (
   if (!userId && !guestCartId) {
     throw new BadRequestException("User ID or guest cart ID is required");
   }
+
+  const query: Record<string, unknown> = userId
+    ? { userId: new mongoose.Types.ObjectId(userId) }
+    : { guestCartId };
 
   const validItems: { productId: mongoose.Types.ObjectId; quantity: number }[] =
     [];
@@ -30,7 +34,15 @@ export const upsertCartService = async (
   }
 
   if (validItems.length === 0) {
-    throw new BadRequestException("No valid products in cart");
+    await CartModel.findOneAndUpdate(query, { $set: { items: [] } }, { upsert: true });
+    return {
+      cart: { items: [] },
+      subtotal: 0,
+      deliveryFee: 0,
+      tax: 0,
+      orderTotal: 0,
+      freeDeliveryThreshold: FREE_DELIVERY_THRESHOLD,
+    };
   }
 
   const products = await ProductModel.find({
@@ -59,12 +71,16 @@ export const upsertCartService = async (
   }
 
   if (filteredItems.length === 0) {
-    throw new BadRequestException("No in-stock products found");
+    await CartModel.findOneAndUpdate(query, { $set: { items: [] } }, { upsert: true });
+    return {
+      cart: { items: [] },
+      subtotal: 0,
+      deliveryFee: 0,
+      tax: 0,
+      orderTotal: 0,
+      freeDeliveryThreshold: FREE_DELIVERY_THRESHOLD,
+    };
   }
-
-  const query: Record<string, unknown> = userId
-    ? { userId: new mongoose.Types.ObjectId(userId) }
-    : { guestCartId };
 
   const update: Record<string, unknown> = { $set: { items: filteredItems } };
   if (userId) {

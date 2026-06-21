@@ -1,10 +1,4 @@
 @baseUrl = http://localhost:8000/api/admin
-@authUrl = http://localhost:8000/api/auth
-
-### 1. Login as admin first to get JWT cookie
-# POST {{authUrl}}/login
-# Content-Type: application/json
-# { "email": "admin@example.com", "password": "adminpassword" }
 
 ### Get admin analytics
 GET {{baseUrl}}/analytics
@@ -13,7 +7,7 @@ Content-Type: application/json
 ### Generate AI admin content (rephrase title)
 POST {{baseUrl}}/ai/generate
 Content-Type: application/json
-
+ 
 {
   "action": "rephrase-title",
   "title": "Ball Park Burger Buns Everything",

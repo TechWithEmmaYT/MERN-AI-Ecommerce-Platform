@@ -6,13 +6,13 @@
 # { "email": "real_json_test@test.com", "password": "TestPass1234!" }
 
 ### Create a new address (default)
-POST {{baseUrl}}
+ POST {{baseUrl}}
 Content-Type: application/json
 
 {
   "recipientName": "John Doe",
   "phone": "+1234567890",
-  "street": "123 Main St",
+  "street": "123 Main St", 
   "city": "New York",
   "state": "NY",
   "postalCode": "10001",

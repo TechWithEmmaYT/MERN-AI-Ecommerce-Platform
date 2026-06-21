@@ -8,7 +8,7 @@ Content-Type: application/json
 ### Upsert cart (guest — add/update items)
 POST {{baseUrl}}
 Content-Type: application/json
-
+ 
 {
   "items": [
     { "productId": "6a33b88f562416ae32da00e6", "quantity": 2 },

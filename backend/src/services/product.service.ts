@@ -103,7 +103,7 @@ export const getDealsService = async (query: GetDealsInput) => {
   })
     .sort({ discountPercent: -1 })
     .limit(limit)
-    .select("name slug images originalPrice salePrice discountPercent discountLabel ratingAverage reviewCount")
+    .select("name slug images originalPrice salePrice discountPercent discountLabel unit ratingAverage reviewCount")
     .lean();
 
   return { products };
@@ -114,7 +114,7 @@ export const getProductBySlugService = async ({
 }: GetProductBySlugInput) => {
   const product = await ProductModel.findOne({ slug, isActive: true })
     .populate("categoryId", "name slug")
-    .select("name slug images description originalPrice salePrice discountPercent discountLabel stockCount ratingAverage reviewCount categoryId createdAt")
+    .select("name slug images description originalPrice salePrice unit discountPercent discountLabel stockCount ratingAverage reviewCount categoryId createdAt")
     .lean();
 
   if (!product) throw new NotFoundException("Product not found");

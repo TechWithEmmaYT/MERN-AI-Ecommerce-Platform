@@ -133,7 +133,7 @@ export const getUserReviewableOrderItemsService = async (
     "items.isReviewed": false,
   })
     .sort({ createdAt: -1 })
-    .select("_id items createdAt")
+    .select("_id items orderNo createdAt")
     .lean();
 
      const filteredOrders = orders.map(order => ({
