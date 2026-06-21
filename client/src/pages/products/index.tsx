@@ -16,11 +16,6 @@ import { cn } from "@/lib/utils";
 import { CheckIcon, Inbox, RotateCcw } from "lucide-react";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import {
-  getStarterProductCardProps,
-  getStarterProductsByCategory,
-  starterCategories,
-} from "@/constants/products";
 import { getAllCategoriesQueryFn, getProductsQueryFn } from "@/lib/api";
 import { useQuery } from "@tanstack/react-query";
 import { Skeleton } from "@/components/ui/skeleton";

@@ -1,6 +1,5 @@
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { LayoutDashboard, ShoppingCart, Package, ArrowLeft, LogOut } from "lucide-react";
-import { useUser } from "@/hooks/use-user";
 import { Navigate } from "react-router-dom";
 import { Spinner } from "@/components/ui/spinner";
 import Logo from "@/components/logo";

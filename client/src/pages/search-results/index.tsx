@@ -18,10 +18,6 @@ import {
 } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getProductsQueryFn } from "@/lib/api";
-import {
-  getStarterProductCardProps,
-  starterProducts,
-} from "@/constants/products";
 import { PUBLIC_ROUTES } from "@/routes/route";
 import { Search } from "lucide-react";
 import { useState } from "react";

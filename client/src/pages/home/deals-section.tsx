@@ -2,7 +2,6 @@ import ProductCard from "@/components/product-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useQuery } from "@tanstack/react-query";
 import { getProductDealsQueryFn } from "@/lib/api";
-import { getStarterProductCardProps } from "@/constants/products";
 
 const TodayDealsSection = () => {
   const { data, isLoading } = useQuery({

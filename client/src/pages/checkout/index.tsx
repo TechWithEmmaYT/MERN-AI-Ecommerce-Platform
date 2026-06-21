@@ -24,7 +24,6 @@ import PaymentSection from "./components/payment-section";
 import ReviewSection from "./components/review-section";
 import { CheckoutPaymentMethod } from "@/constants/checkout";
 import {
-  starterAddresses,
   type AddressFormValues,
 } from "@/constants/address";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -34,9 +33,6 @@ import {
   createOrderMutationFn,
 } from "@/lib/api";
 import { toast } from "sonner";
-import type { AddressType } from "@/types/auth.type";
-
-
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
