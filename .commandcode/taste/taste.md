@@ -21,7 +21,7 @@
 - For admin list pages (orders, products), use server-side pagination driven by the API's `pagination` response object (`{ page, limit, total, totalPages, hasNextPage, hasPrevPage }`). Do not implement client-side slicing of the full dataset — the API already returns paginated results. Derive `totalPages`, `startIndex`, and `endIndex` from the pagination metadata, not from the local array length. Confidence: 0.70
 
 # Admin Table Styling
-- For admin table pages, use reduced padding: `px-4 py-2` for `<TableCell>` and `px-4 py-2` for `<TableHead>` (instead of `px-6 py-3`/`px-6 py-4`). This provides a denser, more data-focused layout consistent across admin list views. Confidence: 0.70
+- For admin table pages, use reduced padding: `px-6 py-2` for both `<TableCell>` and `<TableHead>` (instead of `px-6 py-3`/`px-6 py-4`). This provides a denser, more data-focused layout consistent across admin list views (orders and products pages both use this pattern). Confidence: 0.80
 
 # Resource Scaffolding
 - When scaffolding a new resource (e.g., session, product, blog), follow this pattern: 1) Controllers use `asyncHandler` wrapper, and protected routes extract `_id` from `req.user`, 2) Validation schemas go in `src/validators/`, 3) Services export scaffolded function stubs that return placeholder text responses, 4) Routes use `passportAuthenticateJwt` middleware for protected endpoints. Confidence: 0.70
@@ -31,9 +31,11 @@
 - Use `session.withTransaction()` instead of `startTransaction()`/`commitTransaction()`/`abortTransaction()` for cleaner code. `withTransaction()` auto-commits on success and auto-aborts on error, eliminating manual session management. Confidence: 0.70
 
 # TestSprite Testing
+- For TestSprite frontend testing, only provide a comprehensive PRD — do NOT manually write test case files (like frontend_test_cases.md). TestSprite generates its own test cases from the PRD in its native format. Manually writing test cases is redundant and the format won't match what TestSprite needs. Confidence: 0.70
 - When generating TestSprite tests, always fetch real data (product IDs, user credentials, etc.) from the API first via HTTP calls — never use placeholder/hardcoded IDs like "prod-001" or "sample-product-1". Placeholder IDs won't match valid MongoDB ObjectIds and will cause false failures. Confidence: 0.85
 - Always include concrete request payload examples and actual response schemas (with real field names, types, and values) in the code_summary.yaml fed to TestSprite. Without accurate payload/response shapes, TestSprite generates tests with wrong assertions (e.g., wrong status codes, missing fields, incorrect types) that fail on the test logic itself, not the API. Confidence: 0.85
 - Before running TestSprite tests, manually set up the prerequisite state that tests need: register a fresh user, log in to get cookies/credentials, add items to cart, create addresses — then feed those real credentials, cookies, and IDs to TestSprite. TestSprite cannot orchestrate multi-step setup flows itself and will use hardcoded/fake values that fail. Confidence: 0.80
+- For frontend web testing with TestSprite, provide a comprehensive PRD that describes: complete route structure (public/protected/admin), layout hierarchy, auth flow (including modal vs page navigation), state management (Zustand stores, TanStack Query keys), cart system behavior, checkout flow step-by-step, admin pages, and component file locations. TestSprite uses this to understand the app's structure and generate accurate E2E test plans. Confidence: 0.70
 
 # node.js-scaffolding
 See [node.js-scaffolding/taste.md](node.js-scaffolding/taste.md)
