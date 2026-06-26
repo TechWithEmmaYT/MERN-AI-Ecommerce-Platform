@@ -31,11 +31,6 @@
 - Use `session.withTransaction()` instead of `startTransaction()`/`commitTransaction()`/`abortTransaction()` for cleaner code. `withTransaction()` auto-commits on success and auto-aborts on error, eliminating manual session management. Confidence: 0.70
 
 # TestSprite Testing
-- For TestSprite frontend testing, only provide a comprehensive PRD — do NOT manually write test case files (like frontend_test_cases.md). TestSprite generates its own test cases from the PRD in its native format. Manually writing test cases is redundant and the format won't match what TestSprite needs. Confidence: 0.70
-- When generating TestSprite tests, always fetch real data (product IDs, user credentials, etc.) from the API first via HTTP calls — never use placeholder/hardcoded IDs like "prod-001" or "sample-product-1". Placeholder IDs won't match valid MongoDB ObjectIds and will cause false failures. Confidence: 0.85
-- Always include concrete request payload examples and actual response schemas (with real field names, types, and values) in the code_summary.yaml fed to TestSprite. Without accurate payload/response shapes, TestSprite generates tests with wrong assertions (e.g., wrong status codes, missing fields, incorrect types) that fail on the test logic itself, not the API. Confidence: 0.85
-- Before running TestSprite tests, manually set up the prerequisite state that tests need: register a fresh user, log in to get cookies/credentials, add items to cart, create addresses — then feed those real credentials, cookies, and IDs to TestSprite. TestSprite cannot orchestrate multi-step setup flows itself and will use hardcoded/fake values that fail. Confidence: 0.80
-- For frontend web testing with TestSprite, provide a comprehensive PRD that describes: complete route structure (public/protected/admin), layout hierarchy, auth flow (including modal vs page navigation), state management (Zustand stores, TanStack Query keys), cart system behavior, checkout flow step-by-step, admin pages, and component file locations. TestSprite uses this to understand the app's structure and generate accurate E2E test plans. Confidence: 0.70
-
+See [testsprite-testing/taste.md](testsprite-testing/taste.md)
 # node.js-scaffolding
 See [node.js-scaffolding/taste.md](node.js-scaffolding/taste.md)
