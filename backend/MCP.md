@@ -10,7 +10,7 @@
   }
 }
 
-cmdc mcp add-json TestSprite '{"command":"npx","args":["-y","@testsprite/testsprite-mcp@latest"],"env":{"API_KEY":"sk-user--AiNm96saM9hE5kI9Nc8C-kP4tL071h9ZapTAYwlQJ4_O31JS_CYSFbwC1s8-TB8g6K2uThHFGlfrlL0V4NHBUjlL4TsJj520l3YFTRbzKXgH4kvu8th-hIse1zs20YNEVs"},"transport":"stdio"}'
+cmdc mcp add-json TestSprite '{"command":"npx","args":["-y","@testsprite/testsprite-mcp@latest"],"env":{"API_KEY":"<API_KEY>"},"transport":"stdio"}'
 
 
 {
