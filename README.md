@@ -11,7 +11,7 @@
 
 ## ❤️ Support the Channel
 
-* 🤖 [Try Command Code (AI Coding CLI that learns your taste)](https://commandcode.ai/?utm_source=youtube&utm_medium=secondvideo&utm_id=emmanuel)
+* 🤖 [Try Command Code (AI Coding CLI that learns your taste)](https://commandcode.ai/?utm_source=youtube&utm_medium=techwithemmaofficial&utm_campaign=v%3DcIZwzfQXFMw)
 * 🧪 [Try TestSprite](https://www.testsprite.com/?via=emmanuel)
 * 🎥 [Subscribe on YouTube](https://tinyurl.com/subcribe-to-techwithemma)
 * ☕ [Buy Me a Coffee](https://dub.sh/buy-me-coffee)
